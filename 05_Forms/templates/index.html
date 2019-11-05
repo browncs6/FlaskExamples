@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Form example</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}"
+  </head>
+  <body>
+  <h1>Basic Calculator</h1>
+  <form action="/calc" method="post">
+    <input type="text" name="first_operand" value="{{ first_operand }}">
+    <select name="operator">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+    </select>
+    <input type="text" name="second_operand" value="{{ second_operand }}"><br><br>
+    <input type="submit" id="submit" value="calculate" />
+  </form>
+  </body>
+</html>
