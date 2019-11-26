@@ -1,0 +1,16 @@
+version: '3'
+services:
+  login:
+    build: .
+    ports:
+      - "8000:5000"
+    env_file: .env
+    links:
+      - postgres:dbserver
+    volumes:
+      - ${DATA_DIR}:/var/lib/postgresql/data
+    restart: always
+  postgres:
+    image: "postgres:12.1"
+    env_file: .env-postgres
+    restart: always
