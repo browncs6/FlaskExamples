@@ -50,7 +50,7 @@ def post_route():
     print(request.form)
     body = '<table>'
     for k, v in request.form.items():
-        body = '<tr><td>{}</td><td>{}</td></tr>'.format(k, v)
+        body += '<tr><td>{}</td><td>{}</td></tr>'.format(k, v)
     body += '</table>'
 
     response = make_response(body)
