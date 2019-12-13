@@ -8,7 +8,7 @@ Start postgres via
 mkdir db-data
 
 docker run --name postgres -e POSTGRES_PASSWORD=docker \
-                  --rm -p 5432:5432 -v db-data:/var/lib/postgresql/data postgres
+                  --rm -p 5432:5432 -v $PWD/db-data:/var/lib/postgresql/data postgres
 ```
 
 
