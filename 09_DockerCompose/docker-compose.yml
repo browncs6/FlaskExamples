@@ -4,7 +4,10 @@ services:
     build: .
     ports:
       - "8000:5000"
-    env_file: .env
+    environment:
+      - FLASK_APP=login.py
+      - APP_SECRET=testsecret
+      - DBURI=postgresql://postgres:docker@dbserver/postgres
     links:
       - postgres:dbserver
     volumes:
@@ -12,5 +15,6 @@ services:
     restart: always
   postgres:
     image: "postgres:12.1"
-    env_file: .env-postgres
+    environment:
+      - POSTGRES_PASSWORD=docker
     restart: always

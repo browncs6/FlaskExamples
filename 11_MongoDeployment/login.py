@@ -35,8 +35,7 @@ class RegistrationForm(FlaskForm):
 assert 'APP_SECRET' in os.environ, 'need to set APP_SECRET environ variable.'
 
 app = Flask(__name__)
-app.config['MONGO_URI'] = os.environ['DB_URI']#'mongodb://localhost:27017/logindb'
-print(os.environ['DB_URI'])
+app.config['MONGO_URI'] = os.environ['DBURI'] # standard login db uri is 'mongodb://localhost:27017/logindb'
 app.config['SECRET_KEY'] = os.environ['APP_SECRET']
 mongo = PyMongo(app)
 db = mongo.db
