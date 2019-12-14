@@ -1,0 +1,22 @@
+version: '3'
+services:
+  login:  # this is the name of the service
+    image: "login:latest" # name/tag of your docker image, create it with docker build ... first
+    links:
+      - mongo:dbserver # we make connections of the mongo image available under the hostname dbserver
+    environment:
+      - FLASK_APP=login.py # this allows you to use flask shell
+      - APP_SECRET=thisisatestsecret # app secret for flask login
+      - DBURI=mongodb://dbserver:27017/logindb # the mongodb login uri, the format is mongodb://[username:password@]host1[:port1][,...hostN[:portN]][/[database][?options]]
+    restart: always
+    ports:
+      - "8000:5000" # your web application will be available under 8000 (change to 80 for release). I.e. it maps your local 8000 port to 5000 within the docker container
+  mongo:
+    image: "mongo" # mongodb image
+    restart: always
+    # if you want your MongoDB database to be reached globally, uncomment this.
+    # else, the networking between your Flask APP and MongoDB will be locally.
+    #ports:
+    #  - "27017:27017"
+    volumes: # specify volumes, i.e. to persist data
+      - ${DATA_DIR}:/data/db # this maps the local directory $PWD/db-data to the standard MongoDB data dir /data/db within the docker container
