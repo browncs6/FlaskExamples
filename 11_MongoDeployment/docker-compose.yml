@@ -1,0 +1,19 @@
+version: '3'
+services:
+  login:
+    image: "login"
+    ports:
+      - "5000:5000"
+    links:
+      - mongo:dbserver
+    environment:
+      APP_SECRET: thisisatestsecret
+      DB_URI: mongodb://dbserver:27017/logindb
+    restart: always
+  mongo:
+    image: "mongo"
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - $PWD/db-data:/data/db
