@@ -10,11 +10,11 @@ services:
       - DBURI=postgresql://postgres:docker@dbserver/postgres
     links:
       - postgres:dbserver
-    volumes:
-      - ${DATA_DIR}:/var/lib/postgresql/data
     restart: always
   postgres:
     image: "postgres:12.1"
     environment:
       - POSTGRES_PASSWORD=docker
     restart: always
+    volumes:
+      - ${DATA_DIR}:/var/lib/postgresql/data
